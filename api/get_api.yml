@@ -1,0 +1,18 @@
+
+name: get请求
+base_url: http://localhost:8080/
+
+variables:
+    sku_id: 1
+    expect_value: success
+
+request:
+    url: /pinter/com/getSku?id=1
+    method: GET
+#    params:
+#        id: $sku_id
+validate:
+    - is: ["status_code", 200]
+    - contains: [content.data.brand,test]
+    - equals: [content.message, $expect_value]
+    - {"check":content.data.brand,"expect":testfan,"comparator":"eq"}
